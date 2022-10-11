@@ -7,6 +7,8 @@ import {
   toggleCompleted,
 } from "../../features/todo/todosSlice";
 
+import { setCompletedFilter } from "../../features/todo/filters/filterSlice";
+
 import "./style/input.css";
 import { create } from "domain";
 
@@ -40,9 +42,9 @@ export const Input = () => {
     items.filter((task: any) => task.completed);
   });
 
-  useEffect(() => {
-    // completedTask(todo);
-  }, []);
+  const handleCompleted = (input: boolean) => {
+    dispatch(setCompletedFilter(input));
+  };
 
   return (
     <>
@@ -70,8 +72,8 @@ export const Input = () => {
         </button>
       </form>
 
-      <button>show completed</button>
-      <button>show unclompleted</button>
+      <button onClick={() => handleCompleted(true)}>show completed</button>
+      <button onClick={() => handleCompleted(false)}>show unclompleted</button>
       <button>show all</button>
 
       <button>undo</button>
