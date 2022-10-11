@@ -1,9 +1,7 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Filters } from "./filters";
 
-const initialState: Filters = {
-  input: "",
-};
+const initialState: Filters = { searchText: "" };
 
 export const filterSlice = createSlice({
   name: "filter",

@@ -1,3 +1,4 @@
 export interface Filters {
-  input: string;
+  completed?: boolean;
+  searchText: string;
 }

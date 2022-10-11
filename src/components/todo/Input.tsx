@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { createSelector } from "@reduxjs/toolkit";
 import {
   addTodo,
   removeTodo,
@@ -7,6 +8,7 @@ import {
 } from "../../features/todo/todosSlice";
 
 import "./style/input.css";
+import { create } from "domain";
 
 export const Input = () => {
   const [input, setInput] = useState<string>("");
@@ -26,20 +28,21 @@ export const Input = () => {
     dispatch(addTodo({ text: input, tag: tag }));
     setInput("");
     setTag("");
+    console.log(completedTask(todo));
   };
 
-  const handleRemove = (id: number) => {
-    dispatch(removeTodo(id));
-    // dovrò fare lo slice mettendo come action la i , che rappresenta la posizione da cui eliminare la todo
-  };
-  const handleToggle = (id: number) => {
-    dispatch(toggleCompleted(id));
-    // dovrò fare lo slice mettendo come action la i , che rappresenta la posizione da cui eliminare la todo
-  };
+  // dichiaro una costante con le task dal riduttore
 
-  // useEffect(() => {
-  //   setInput(input);
-  // }, [input]);
+  let selectShopItems = (state: any) => state.todo.todos;
+
+  console.log(selectShopItems);
+  const completedTask = createSelector(selectShopItems, (items) => {
+    items.filter((task: any) => task.completed);
+  });
+
+  useEffect(() => {
+    // completedTask(todo);
+  }, []);
 
   return (
     <>
@@ -67,25 +70,9 @@ export const Input = () => {
         </button>
       </form>
 
-      <ul>
-        {todo.map((singleTodo: any, i: number) => (
-          <>
-            <li key={singleTodo.id}>
-              {" "}
-              <span
-                onClick={() => handleToggle(singleTodo.id)}
-                className={
-                  singleTodo.completed ? "completato" : "non_completato"
-                }
-              >
-                {singleTodo.text}
-              </span>
-              <span>{singleTodo.tag}</span>
-            </li>
-            <button onClick={() => handleRemove(singleTodo.id)}>remove</button>
-          </>
-        ))}
-      </ul>
+      <button>show completed</button>
+      <button>show unclompleted</button>
+      <button>show all</button>
 
       <button>undo</button>
     </>

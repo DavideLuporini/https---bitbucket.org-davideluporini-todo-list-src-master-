@@ -1,4 +1,5 @@
-import { createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { createSelector, createSlice, PayloadAction } from "@reduxjs/toolkit";
+import { RootState } from "../../app/store";
 import { Filters } from "./filters/filters";
 import { Todo } from "./todo";
 
@@ -13,6 +14,29 @@ const initialState: TodosState = {
   currentId: 0,
   filters: [],
 };
+
+// steps :
+// 1) creare un filter Reducer con annesso type in modo tale da pote accedere agli state  tramite rootState
+// 2)  inserire tutti gli state necessari nel selector
+//3) creare la logica nella funzione che effettui il return dell'array filtrato
+
+// export const getCompletedTask = createSelector(
+//   (state: RootState) => ({
+//     todos: state.todo.todos,
+//     completed: state.filters.completed,
+//   }),
+//   ({ todos, completed }) => {
+//     let completedTodo: any[] = [];
+//     for (let task in todos) {
+//       let matchedtask = false;
+//       if (task) {
+//         task.completed === true
+//       }
+//     }
+
+//     return completedTodo;
+//   }
+// );
 
 export const todosSlice = createSlice({
   name: "todos",
