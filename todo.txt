@@ -1,0 +1,24 @@
+-come strutturare correttamente typescript
+
+come creare l'interface corretta per la mia struttura dati todos / todo 
+
+
+come strutturo i filters e cosa mi serve per mettere?
+
+
+
+esempio actions per visibilita'
+
+
+const getVisibleTodos = (todos: Todo[], filter: VisibilityFilter) => {
+  switch (filter) {
+    case VisibilityFilter.ShowAll:
+      return todos;
+    case VisibilityFilter.ShowCompleted:
+      return todos.filter(t => t.completed);
+    case VisibilityFilter.ShowActive:
+      return todos.filter(t => !t.completed);
+    default:
+      throw new Error("Unknown filter: " + filter);
+  }
+};

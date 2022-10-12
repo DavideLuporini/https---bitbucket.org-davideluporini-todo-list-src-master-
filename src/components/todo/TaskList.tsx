@@ -10,6 +10,10 @@ const TaskList = () => {
     dispatch(removeTodo(id));
     // dovrò fare lo slice mettendo come action la i , che rappresenta la posizione da cui eliminare la todo
   };
+  const handleEdit = (id: number) => {
+    // dispatch(removeTodo(id));
+    // dovrò fare lo slice mettendo come action la i , che rappresenta la posizione da cui eliminare la todo
+  };
   const handleToggle = (id: number) => {
     dispatch(toggleCompleted(id));
     // dovrò fare lo slice mettendo come action la i , che rappresenta la posizione da cui eliminare la todo
@@ -30,6 +34,7 @@ const TaskList = () => {
               </span>
               <span>{singleTodo.tag}</span>
             </li>
+            <button onClick={() => handleEdit(singleTodo.id)}>Edit</button>
             <button onClick={() => handleRemove(singleTodo.id)}>remove</button>
           </>
         ))}

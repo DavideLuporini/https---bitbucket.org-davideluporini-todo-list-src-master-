@@ -20,23 +20,17 @@ const initialState: TodosState = {
 // 2)  inserire tutti gli state necessari nel selector
 //3) creare la logica nella funzione che effettui il return dell'array filtrato
 
-// export const getCompletedTask = createSelector(
-//   (state: RootState) => ({
-//     todos: state.todo.todos,
-//     completed: state.filters.completed,
-//   }),
-//   ({ todos, completed }) => {
-//     let completedTodo: any[] = [];
-//     for (let task in todos) {
-//       let matchedtask = false;
-//       if (task) {
-//         task.completed === true
-//       }
-//     }
+export const getCompletedTask = createSelector(
+  (state: RootState) => ({
+    todos: state.todo,
+    completed: state.filters.completed,
+  }),
+  ({ todos, completed }) => {
+    let completedTodo: any[] = [];
 
-//     return completedTodo;
-//   }
-// );
+    return completedTodo;
+  }
+);
 
 export const todosSlice = createSlice({
   name: "todos",

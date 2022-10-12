@@ -11,6 +11,7 @@ import { setCompletedFilter } from "../../features/todo/filters/filterSlice";
 
 import "./style/input.css";
 import { create } from "domain";
+import ButtonAdd from "../buttons/ButtonAdd";
 
 export const Input = () => {
   const [input, setInput] = useState<string>("");
@@ -67,14 +68,12 @@ export const Input = () => {
           <option value="programmazione">programmazione</option>
           <option value="finanza">finanza</option>
         </select>
-        <button onClick={() => handleSubmit} type="submit">
-          aggiungi
-        </button>
+        <ButtonAdd handleSubmit={handleSubmit} />
       </form>
 
-      <button onClick={() => handleCompleted(true)}>show completed</button>
+      {/* <button onClick={() => handleCompleted(true)}>show completed</button>
       <button onClick={() => handleCompleted(false)}>show unclompleted</button>
-      <button>show all</button>
+      <button>show all</button> */}
 
       <button>undo</button>
     </>
